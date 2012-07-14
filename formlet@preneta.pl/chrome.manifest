@@ -1,0 +1,4 @@
+content   formlet                 chrome/content/
+skin      formlet   classic/1.0   chrome/skin/
+locale    formlet   en-US         chrome/locale/en-US/
+overlay   chrome://browser/content/browser.xul chrome://formlet/content/formlet-overlay.xul

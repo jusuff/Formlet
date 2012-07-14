@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://browser/content/places/places.css"?>
+<?xml-stylesheet href="chrome://browser/skin/places/places.css"?>
+<?xul-overlay href="chrome://browser/content/places/placesOverlay.xul" ?>
+
+<!DOCTYPE dialog SYSTEM "chrome://formlet/locale/formlet.dtd">
+
+<dialog id="FormletOptionsDialog"
+        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        title="&formlet.bookmarksFolder.title;"
+        buttons="accept,cancel"
+        buttoniconaccept="save"
+        onload="FormletOptionsDialog.onDialogLoad();"
+        ondialogaccept="return FormletOptionsDialog.onDialogAccept();"
+        persist="screenX screenY width height">
+
+    <script type="application/x-javascript" src="chrome://formlet/content/options-dialog.js"/>
+
+    <groupbox align="center" orient="horizontal">
+        <vbox flex="1" height="160px">
+
+            <spacer height="5"/>
+            <checkbox id="saveBlank" label="&formlet.saveBlank.title;"/>
+            <checkbox id="saveHidden" label="&formlet.saveHidden.title;"/>
+            <checkbox id="savePasswords" label="&formlet.savePasswords.title;"/>
+            <spacer height="5"/>
+
+        </vbox>
+    </groupbox>
+</dialog>
