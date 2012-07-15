@@ -11,8 +11,11 @@
 <!ENTITY formlet.bookmarksFolder.title          "Bookmarks folder">
 <!ENTITY formlet.bookmarksFolder.desc           "Folder to store your saved forms. Click to change it.">
 <!ENTITY formlet.bookmarksFolder.label          "Browse">
+<!ENTITY formlet.bookmarksFolder.dialogTitle    "Choose bookmarks folder">
 <!ENTITY formlet.showBookmarksDialog.title      "Show bookmarks dialog while saving">
 <!ENTITY formlet.showBookmarksDialog.desc       "Unckeck to save bookmarks silently.">
+
+<!ENTITY formlet.optionsFialog.title            "Formlet options">
 
 <!ENTITY formlet.context.label                  "Save form with Formlet">
 <!ENTITY formlet.context.accesskey              "F">

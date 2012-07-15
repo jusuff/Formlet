@@ -9,7 +9,7 @@
 
 <dialog id="FormletOptionsDialog"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        title="&formlet.bookmarksFolder.title;"
+        title="&formlet.optionsFialog.title;"
         buttons="accept,cancel"
         buttoniconaccept="save"
         onload="FormletOptionsDialog.onDialogLoad();"
@@ -19,13 +19,11 @@
     <script type="application/x-javascript" src="chrome://formlet/content/options-dialog.js"/>
 
     <groupbox align="center" orient="horizontal">
-        <vbox flex="1" height="160px">
+        <vbox flex="1">
 
-            <spacer height="5"/>
             <checkbox id="saveBlank" label="&formlet.saveBlank.title;"/>
             <checkbox id="saveHidden" label="&formlet.saveHidden.title;"/>
             <checkbox id="savePasswords" label="&formlet.savePasswords.title;"/>
-            <spacer height="5"/>
 
         </vbox>
     </groupbox>

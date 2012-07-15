@@ -7,7 +7,7 @@
 
 <dialog id="FormletFoldersDialog"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        title="&formlet.bookmarksFolder.title;"
+        title="&formlet.bookmarksFolder.dialogTitle;"
         buttons="accept,cancel"
         buttoniconaccept="save"
         onload="FormletFoldersDialog.onDialogLoad();"
