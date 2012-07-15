@@ -1,0 +1,8 @@
+#context-formlet {
+    list-style-image: url(chrome://formlet/skin/formlet-menu.png);
+    -moz-image-region: rect(16px, 16px, 32px, 0);
+}
+#context-formlet:hover,
+#context-formlet:active {
+    -moz-image-region: rect(0, 16px, 16px, 0);
+}
