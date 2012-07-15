@@ -66,7 +66,7 @@ var Formlet = {
     showOptionsDialog: function(defaults) {
         var params = {
             defaults: defaults,
-            result: defaults
+            result: null
         };
         window.openDialog(
             'chrome://formlet/content/options-dialog.xul',
@@ -94,7 +94,9 @@ var Formlet = {
         var form = gContextMenu.target,
             options = this.getOptions(),
             code;
-
+        if (!options) {
+            return;
+        }
         while (form.parentNode && form.nodeName !== 'FORM') {
             form = form.parentNode;
         }
