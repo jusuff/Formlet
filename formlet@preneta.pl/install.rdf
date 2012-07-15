@@ -19,5 +19,7 @@
         <em:optionsURL>chrome://formlet/content/options.xul</em:optionsURL>
         <em:optionsType>2</em:optionsType>
         <em:homepageURL>https://github.com/jusuff/Formlet</em:homepageURL>
+        <em:iconURL>chrome://formlet/skin/formlet48.png</em:iconURL>
+        <em:icon64URL>chrome://formlet/skin/formlet64.png</em:icon64URL>
     </Description>
 </RDF>
