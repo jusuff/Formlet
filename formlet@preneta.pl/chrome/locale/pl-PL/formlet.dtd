@@ -1,0 +1,21 @@
+<!ENTITY formlet.showDialog.title               "Wyświetlaj okno z opcjami podczas zapisywania">
+<!ENTITY formlet.showDialog.desc                "Odznacz, aby zapisywać formularze bez wyświetlania okna z opcjami (użyte zostaną domyślne ustawienia)">
+<!ENTITY formlet.saveBlank.title                "Zapisuj puste pola">
+<!ENTITY formlet.saveBlank.desc                 "Jeśli to pole jest zaznaczone, Formlet zapisuje także puste pola formularza. Oznacza to, że podczas odtwarzania formularza, pola zapisane jako puste zostaną wyczyszczone.">
+<!ENTITY formlet.saveHidden.title               "Zapisuj ukryte pola">
+<!ENTITY formlet.saveHidden.desc                "Jeśli to jest zaznaczone, Formlet zapisuje także ukryte pola formularza.">
+<!ENTITY formlet.savePasswords.title            "Zapisuj pola z hasłami">
+<!ENTITY formlet.savePasswords.desc             "Zaznacz to pole, aby zapisywać także hasła z formularzy. UWAGA: zapisywanie haseł nie jest zalecane, Formlet nie szyfruje zapisanych danych i mogą one zostać łatwo odczytane przez niepożądane osoby.">
+<!ENTITY formlet.titlePattern.title             "Format nazw zakładek">
+<!ENTITY formlet.titlePattern.desc              "Ustaw własny format nazw zakładek. Następujące symbole są dynamicznie zastępowane: {TITLE} - zostanie zastąpiony przez tytuł strony; {DATE} - zostanie zastąpiony przez bieżącą datę.">
+<!ENTITY formlet.bookmarksFolder.title          "Folder zakładek">
+<!ENTITY formlet.bookmarksFolder.desc           "Folder, w którym zapisywane będą zakładki. Kliknij, by wybrać inny folder.">
+<!ENTITY formlet.bookmarksFolder.label          "Przeglądaj">
+<!ENTITY formlet.bookmarksFolder.dialogTitle    "Wybierz folder zakładek">
+<!ENTITY formlet.showBookmarksDialog.title      "Wyświetl okno opcji zakładek podczas zapisywania">
+<!ENTITY formlet.showBookmarksDialog.desc       "Odznacz, by zapisywać formularze z domyślnymi ustawieniami.">
+
+<!ENTITY formlet.optionsFialog.title            "Opcje Formlet">
+
+<!ENTITY formlet.context.label                  "Zapisz formularz za pomocą Formlet">
+<!ENTITY formlet.context.accesskey              "F">

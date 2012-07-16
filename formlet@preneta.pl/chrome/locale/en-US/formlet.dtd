@@ -1,11 +1,11 @@
 <!ENTITY formlet.showDialog.title               "Show dialog with options while saving">
 <!ENTITY formlet.showDialog.desc                "Uncheck to save forms without showing dialog window with options (default settings will be used)">
 <!ENTITY formlet.saveBlank.title                "Save blank fields">
-<!ENTITY formlet.saveBlank.desc                 "If this field is checked, then FormLet saves also blank fields. This means that while restoring form - fields saved as blank will be cleared.">
+<!ENTITY formlet.saveBlank.desc                 "If this field is checked, then Formlet saves also blank fields. This means that while restoring form - fields saved as blank will be cleared.">
 <!ENTITY formlet.saveHidden.title               "Save hidden fields">
-<!ENTITY formlet.saveHidden.desc                "If this field is checked, then FormLet saves also hidden fields.">
+<!ENTITY formlet.saveHidden.desc                "If this field is checked, then Formlet saves also hidden fields.">
 <!ENTITY formlet.savePasswords.title            "Save password fields">
-<!ENTITY formlet.savePasswords.desc             "Check this field to store passwords. CAUTION: it's not recommended to store password using this extension.">
+<!ENTITY formlet.savePasswords.desc             "Check this field to store passwords. CAUTION: it's not recommended to store password using this extension. Formlet does not encrypt stored data, which can be easily read by unwanted person.">
 <!ENTITY formlet.titlePattern.title             "Pattern for bookmarks title">
 <!ENTITY formlet.titlePattern.desc              "Set your own bookmarks title pattern. You may use following symbols, which will be dynamically replaced: {TITLE} - will be replaced by page title; {DATE} - will be replaced by current date.">
 <!ENTITY formlet.bookmarksFolder.title          "Bookmarks folder">
@@ -13,7 +13,7 @@
 <!ENTITY formlet.bookmarksFolder.label          "Browse">
 <!ENTITY formlet.bookmarksFolder.dialogTitle    "Choose bookmarks folder">
 <!ENTITY formlet.showBookmarksDialog.title      "Show bookmarks dialog while saving">
-<!ENTITY formlet.showBookmarksDialog.desc       "Unckeck to save bookmarks silently.">
+<!ENTITY formlet.showBookmarksDialog.desc       "Unckeck to save bookmarks using default settings.">
 
 <!ENTITY formlet.optionsFialog.title            "Formlet options">
 
