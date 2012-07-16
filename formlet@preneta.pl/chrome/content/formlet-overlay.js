@@ -118,7 +118,7 @@ var Formlet = {
                 type: 'bookmark',
                 uri: bookmarkURI,
                 defaultInsertionPoint: folder,
-                title: 'DIALOG ' + bookmarkTitle,
+                title: bookmarkTitle,
                 hiddenRows: ['description' , 'location' , 'loadInSidebar' , 'keyword']
             }, window);
         } else {
@@ -126,7 +126,7 @@ var Formlet = {
                 folderId, // The id of the folder the bookmark will be placed in.
                 bookmarkURI,             // The URI of the bookmark - an nsIURI object.
                 PlacesUtils.bookmarks.DEFAULT_INDEX, // The position of the bookmark in its parent folder.
-                'QUIET ' + bookmarkTitle
+                bookmarkTitle
             );
         }
     },
