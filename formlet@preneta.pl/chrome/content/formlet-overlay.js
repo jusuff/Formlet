@@ -220,7 +220,7 @@ Formlet.Serializer = {
                         args.push(element.options[o].value);
                     }
                 }
-                blank = args.length; // todo - empty arrays seems to be saved
+                blank = !args.length;
             } else if (element.nodeName === 'INPUT' && ['radio', 'checkbox'].indexOf(element.type) >= 0) {
                 method = 'setChecked';
                 args = !!element.checked;
