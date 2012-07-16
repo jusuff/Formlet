@@ -209,7 +209,7 @@ Formlet.Serializer = {
             if (!name || disallowedTypes.indexOf(element.type) >= 0) {
                 continue;
             }
-            if (elements.namedItem(name) && elements.namedItem(name).length) {
+            if (elements.namedItem(name) && /\[object NodeList\]/.test(Object.prototype.toString.call(elements.namedItem(name)))) {
                 index = Array.prototype.slice.call(elements.namedItem(name)).indexOf(element);
             }
             if (element.nodeName === 'SELECT') {
