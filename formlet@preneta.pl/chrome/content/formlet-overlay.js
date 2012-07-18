@@ -1,9 +1,15 @@
 "use strict";
+/**
+ * Formlet pseudo-class object
+ *
+ * @class
+ */
 var Formlet = {
     addonId: 'formlet@preneta.pl',
-    onLoad: function() {
-        this.__check = 'formlet';
-        this.initialized = true;
+    /**
+     * Initialization routine
+     */
+    init: function() {
         this.prefs = Services.prefs.getBranch("extensions.formlet.");
         // load translations
         this.strings = document.getElementById('formlet-strings');
@@ -11,9 +17,15 @@ var Formlet = {
         document.getElementById('contentAreaContextMenu').addEventListener('popupshowing', this.showFirefoxContextMenu.bind(this), false);
         // listen to options
         Services.obs.addObserver(this.optionsDisplayed.bind(this), 'addon-options-displayed', false);
-        Services.obs.addObserver(this.optionsHidden.bind(this), 'addon-options-hidden', false)
+        Services.obs.addObserver(this.optionsHidden.bind(this), 'addon-options-hidden', false);
     },
 
+    /**
+     * Gets bookmark folder id from preferences.
+     * If it is not set yet - sets it to Bookmarks Toolbar Folder
+     *
+     * @return {Number} Bookmark folder id
+     */
     getStorageFolder: function() {
         var id = this.prefs.getIntPref('bookmarksFolder');
         if (id === 0 ) {
@@ -23,6 +35,13 @@ var Formlet = {
         return id;
     },
 
+    /**
+     * Generates folder path using folder names
+     *
+     * @param {Number} [folderId]
+     *
+     * @return {String} Folders path
+     */
     getStorageFolderPath: function(folderId) {
         folderId = folderId || this.getStorageFolder();
         var id = folderId || PlacesUtils.placesRootId,
@@ -35,18 +54,35 @@ var Formlet = {
         return path.reverse().join('/');
     },
 
+    /**
+     * Saves bookmark folder
+     *
+     * @param {Number} folderId
+     */
     setStorageFolder: function(folderId) {
         if (folderId > 0 ) {
             this.prefs.setIntPref('bookmarksFolder', folderId);
         }
     },
 
+    /**
+     * Evaluates bookmarks title pattern from preferences, replacing possible dynamic elements
+     *
+     * @param {String} title Document title
+     *
+     * @return {String} Parsed title
+     */
     getBookmarkTitle: function(title) {
         var pattern = this.prefs.getCharPref('titlePattern');
         pattern = pattern.replace('{TITLE}', title).replace('{DATE}', (new Date()).toLocaleString());
         return pattern;
     },
 
+    /**
+     * Calls options dialog and returns use choice
+     *
+     * @return {Object} Options object
+     */
     getOptions: function() {
         var defaults = {
                 saveBlank: this.prefs.getBoolPref('saveBlank'),
@@ -63,6 +99,12 @@ var Formlet = {
         return options;
     },
 
+    /**
+     * Displays options dialog to user
+     *
+     * @param {Object} defaults Options from preferences
+     * @return {Object|Null} Options changed by user or null on dialog cancel
+     */
     showOptionsDialog: function(defaults) {
         var params = {
             defaults: defaults,
@@ -77,6 +119,11 @@ var Formlet = {
         return params.result;
     },
 
+    /**
+     * Controls Formlet context menu item and hides it, when context menu is called outside of form element
+     *
+     * @param {Event} event
+     */
     showFirefoxContextMenu: function(event) {
         // show menu item only when inside forms
         var element = gContextMenu.target,
@@ -85,11 +132,14 @@ var Formlet = {
             element = element.parentNode;
         }
         show = element.nodeName === 'FORM';
-        // todo - sometimes its shown outside forms - popupshowing seems to be not fired on some elements - eg buttons and keyboard menu
-//        __alert(element.nodeName);
         document.getElementById('context-formlet').hidden = !show;
     },
 
+    /**
+     * Handles context menu command and saves selected form to bookmark
+     *
+     * @param {Event} event
+     */
     saveForm: function(event) {
         var form = gContextMenu.target,
             options = this.getOptions(),
@@ -106,6 +156,13 @@ var Formlet = {
         }
     },
 
+    /**
+     * Saves bookmarklet
+     * Depending on preferences - creates new bookmark using default preferences
+     * or shows user bookmark dialog,
+     *
+     * @param {String} code Bookmarklet code with serialized form
+     */
     saveBookmark: function(code) {
         var showBookmarksDialog = this.prefs.getBoolPref('showBookmarksDialog'),
             bookmarkURI = Services.io.newURI(code, null, null),
@@ -131,13 +188,19 @@ var Formlet = {
         }
     },
 
-
+    /**
+     * Binds event observer for bookmark folder control on Formlet options display event
+     *
+     * @param aSubject
+     * @param aTopic
+     * @param aData
+     */
     optionsDisplayed: function(aSubject, aTopic, aData) {
         if (aTopic == 'addon-options-displayed' && aData == this.addonId) {
             var control = aSubject.getElementById('bookmarksFolder-control'),
                 params = {
                     selected: this.getStorageFolder(),
-                    result: {}
+                    result: null
                 };
             control.label = this.getStorageFolderPath();
             this.showFoldersDialogBound = this.showFoldersDialog.bind(this, params);
@@ -145,6 +208,12 @@ var Formlet = {
         }
     },
 
+    /**
+     * Removes observer bind by {#optionsDisplayed}
+     * @param aSubject
+     * @param aTopic
+     * @param aData
+     */
     optionsHidden: function(aSubject, aTopic, aData) {
         if (aTopic == 'addon-options-hidden' && aData == this.addonId) {
             var control = aSubject.getElementById('bookmarksFolder-control');
@@ -154,6 +223,15 @@ var Formlet = {
         }
     },
 
+    /**
+     * Handler for bookmark folder control in Formlet preferences
+     * Shows bookmark folder tree and updates preferences on new folder selection.
+     *
+     * @param {Object} params           Params for folders dialog
+     * @param {String} params.selected  Current folder id from preferences
+     * @param {Null}   params.result    Empty entry for dialog return value
+     * @param {Event}  event
+     */
     showFoldersDialog: function(params, event) {
         window.openDialog(
             'chrome://formlet/content/folders-dialog.xul',
@@ -161,14 +239,35 @@ var Formlet = {
             'chrome, resizable, modal, centerscreen',
             params
         );
-        if ('selected' in params.result && params.result.selected > 0) {
-            this.setStorageFolder(params.result.selected);
+        if (params.result && params.result > 0) {
+            this.setStorageFolder(params.result);
             event.target.label = this.getStorageFolderPath();
         }
     }
 };
 
+// Call Formlet initialization routine on firefox load
+window.addEventListener('load', function() { Formlet.init(); }, false);
+
+/**
+ * Form serializer.
+ * Serializes form to JSON-formatted data and generates code for bookmarklet
+ * containing {formFiller} function with form data passed as argument
+ *
+ * @class
+ */
 Formlet.Serializer = {
+    /**
+     * Initialize sterilizer routine
+     *
+     * @param {HTMLElement} form                    Form element to serialize
+     * @param {Object}      options                 {Formlet} options object
+     * @param {Boolean}     options.saveBlank
+     * @param {Boolean}     options.saveHidden
+     * @param {Boolean}     options.savePasswords
+     *
+     * @return {String} Bookmarklet code
+     */
     init: function(form, options) {
         this.form = form;
         this.options = options;
@@ -179,6 +278,12 @@ Formlet.Serializer = {
         };
         return this.save();
     },
+
+    /**
+     * Generates form selector using it's id or position inside document
+     *
+     * @return {String} Form selector
+     */
     getFormSelector: function() {
         var selector;
         if (this.form.id) {
@@ -188,6 +293,19 @@ Formlet.Serializer = {
         }
         return selector;
     },
+
+    /**
+     * Serialize form to array.
+     * Each element is represented by array with following structure:
+     *  [
+     *      name,   // element name
+     *      index,  // index for elements with non-unique names (eg "array[]")
+     *      method, // method for setting the value (setValue, setChecked, setSelected)
+     *      args    // value for element (string for setValue, bool for setChecked, array of strings for setSelected)
+     *  ]
+     *
+     * @return {Array} Array of arrays with elements data
+     */
     serialize: function() {
         var elements = this.form.elements,
             disallowedTypes = ['submit', 'reset', 'button', 'file'],
@@ -232,26 +350,40 @@ Formlet.Serializer = {
         }
         return data;
     },
+
+    /**
+     * Creates code for bookmarklet
+     *
+     * @return {String} Bookmarklet code
+     */
     save: function() {
         this.code = 'javascript:(' + formFiller.toSource() +')(\'' + JSON.stringify(this.data) + '\')';
         return this.code;
     }
 };
 
-window.addEventListener('load', function() { Formlet.onLoad(); }, false);
-
-
 /**
- * Fills from
- *  forms = {
- *      'form': 'selector',
- *      'elements': [
- *          [name, index, method, args]
+ * Form filling function.
+ * Takes form data in JSON format with the following structure
+ *  {
+ *      'form': 'selector',     // form selector
+ *      'elements': [           // array of arrays with elements data
+ *          [
+ *              name,           // element name
+ *              index,          // index for elements with non-unique names (eg "array[]")
+ *              method,         // method for setting the value (setValue, setChecked, setSelected)
+ *              args            // value for element (string for setValue, bool for setChecked, array of strings for setSelected)
+ *           ],
+ *          [...]
  *       ]
  *  }
- * @param {String} data Form data
+ * @param {String} data Form data in JSON format
  */
 function formFiller(data) {
+    /**
+     * Placeholder for internal methods
+     * @type {Object}
+     */
     var methods = {
         /**
          * Gets form element by name or index; for non-unique names (arrays) 3rd param should be passed
@@ -299,6 +431,7 @@ function formFiller(data) {
         elements = data.elements;
     for (var i = 0; i < elements.length; i++) {
         try {
+            // get element by it's name stored in 0 array item and optional index stored in 1 array element
             var element = methods.getElement(form, elements[i][0], elements[i][1]);
             // call method stored in 2 array item with args stored in 3 array item
             methods[elements[i][2]](element, elements[i][3]);

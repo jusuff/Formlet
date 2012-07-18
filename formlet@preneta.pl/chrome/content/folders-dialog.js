@@ -2,7 +2,7 @@ var FormletFoldersDialog = {
     onDialogLoad: function() {
         this.params = window.arguments[0] || {
             selected: null,
-            result: {}
+            result: null
         };
 
         //Run the query
@@ -21,9 +21,8 @@ var FormletFoldersDialog = {
     },
 
     onDialogAccept: function() {
-        var folder = document.getElementById('bookmarksFolders').selectedNode,
-            id = PlacesUtils.getConcreteItemId(folder);
-        this.params.result = {selected: id};
+        var folder = document.getElementById('bookmarksFolders').selectedNode;
+        this.params.result = PlacesUtils.getConcreteItemId(folder);
         return true;
     }
 };
