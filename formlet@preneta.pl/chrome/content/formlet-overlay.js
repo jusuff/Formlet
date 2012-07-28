@@ -357,7 +357,7 @@ Formlet.Serializer = {
      * @return {String} Bookmarklet code
      */
     save: function() {
-        this.code = 'javascript:(' + formFiller.toSource() +')(\'' + JSON.stringify(this.data) + '\')';
+        this.code = 'javascript:(' + Formlet.formFiller.toSource() +')(\'' + JSON.stringify(this.data) + '\')';
         return this.code;
     }
 };
@@ -379,7 +379,7 @@ Formlet.Serializer = {
  *  }
  * @param {String} data Form data in JSON format
  */
-function formFiller(data) {
+Formlet.formFiller = function(data) {
     /**
      * Placeholder for internal methods
      * @type {Object}
