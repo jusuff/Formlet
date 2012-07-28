@@ -357,14 +357,14 @@ Formlet.Serializer = {
      * @return {String} Bookmarklet code
      */
     save: function() {
-        this.code = 'javascript:(' + Formlet.formFiller.toSource() +')(\'' + JSON.stringify(this.data) + '\')';
+        this.code = 'javascript:(' + Formlet.formFiller.toSource() +')(' + JSON.stringify(this.data) + ')';
         return this.code;
     }
 };
 
 /**
  * Form filling function.
- * Takes form data in JSON format with the following structure
+ * Takes form data in the following format
  *  {
  *      'form': 'selector',     // form selector
  *      'elements': [           // array of arrays with elements data
@@ -377,7 +377,7 @@ Formlet.Serializer = {
  *          [...]
  *       ]
  *  }
- * @param {String} data Form data in JSON format
+ * @param {Object} data Form data
  */
 Formlet.formFiller = function(data) {
     /**
@@ -426,7 +426,6 @@ Formlet.formFiller = function(data) {
     };
 
     // decode data
-    data = JSON.parse(data);
     var form = document.querySelector(data.form),
         elements = data.elements;
     for (var i = 0; i < elements.length; i++) {
