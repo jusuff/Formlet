@@ -436,16 +436,4 @@ Formlet.formFiller = function(data) {
             methods[elements[i][2]](element, elements[i][3]);
         } catch(e) {}
     }
-}
-
-///////////////// DEBUG!!!!!!!!!!!
-
-function __alert(msg, json) {
-    if (json) {
-        try {
-            msg = JSON.stringify(msg);
-        } catch (e) {}
-    }
-    Services.prompt.alert(window, '__alert', msg);
-}
-
+};
