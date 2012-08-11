@@ -334,7 +334,7 @@ Formlet.Serializer = {
             if (elements.namedItem(name) && /\[object NodeList\]/.test(Object.prototype.toString.call(elements.namedItem(name)))) {
                 index = Array.prototype.slice.call(elements.namedItem(name)).indexOf(element);
             }
-            if (element.nodeName === 'SELECT') {
+            if (element.nodeName.toLowerCase() === 'select') {
                 method = 'setSelected';
                 args = [];
                 for (var o = 0; o < element.options.length; o++) {
@@ -343,7 +343,7 @@ Formlet.Serializer = {
                     }
                 }
                 blank = !args.length;
-            } else if (element.nodeName === 'INPUT' && ['radio', 'checkbox'].indexOf(element.type) >= 0) {
+            } else if (element.nodeName.toLowerCase() === 'input' && ['radio', 'checkbox'].indexOf(element.type) >= 0) {
                 method = 'setChecked';
                 args = !!element.checked;
                 blank = !args;
