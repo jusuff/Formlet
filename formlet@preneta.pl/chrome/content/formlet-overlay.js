@@ -127,11 +127,15 @@ var Formlet = {
     showFirefoxContextMenu: function(event) {
         // show menu item only when inside forms
         var element = gContextMenu.target,
-            show;
-        while (element.parentNode && element.nodeName !== 'FORM') {
-            element = element.parentNode;
+            show = false;
+
+        if (element) {
+            while (element && element.parentNode && element.nodeName.toLowerCase() !== 'form') {
+                element = element.parentNode;
+            }
+            show = element.nodeName.toLowerCase() === 'form';
         }
-        show = element.nodeName === 'FORM';
+
         document.getElementById('context-formlet').hidden = !show;
     },
 
@@ -144,13 +148,13 @@ var Formlet = {
         var form = gContextMenu.target,
             options = this.getOptions(),
             code;
-        if (!options) {
+        if (!form || !options) {
             return;
         }
-        while (form.parentNode && form.nodeName !== 'FORM') {
+        while (form.parentNode && form.nodeName.toLowerCase() !== 'form') {
             form = form.parentNode;
         }
-        if (form.nodeName === 'FORM') {
+        if (form.nodeName.toLowerCase() === 'form') {
             code = Object.create(Formlet.Serializer).init(form, options);
             this.saveBookmark(code);
         }
