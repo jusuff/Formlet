@@ -331,7 +331,7 @@ Formlet.Serializer = {
             if (!name || disallowedTypes.indexOf(element.type) >= 0) {
                 continue;
             }
-            if (elements.namedItem(name) && /\[object NodeList\]/.test(Object.prototype.toString.call(elements.namedItem(name)))) {
+            if (elements.namedItem(name) && Object.prototype.toString.call(elements.namedItem(name)) === '[object NodeList]') {
                 index = Array.prototype.slice.call(elements.namedItem(name)).indexOf(element);
             }
             if (element.nodeName.toLowerCase() === 'select') {
