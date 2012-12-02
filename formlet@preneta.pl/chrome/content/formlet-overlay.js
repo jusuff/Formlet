@@ -361,7 +361,14 @@ Formlet.Serializer = {
      * @return {String} Bookmarklet code
      */
     save: function() {
-        this.code = 'javascript:' + Formlet.formFiller.toSource() +'(' + JSON.stringify(this.data) + ')';
+        // strip filler method from whitespaces and comments
+        var spaces = /(\w+)?\s+/g,
+            comments = /(\/\*.*?\*\/)/gi,
+            source = Formlet.formFiller.toSource().replace(spaces, function(a, b) {
+                return ['var', 'return'].indexOf(b) >= 0 ? a : b;
+            }).replace(comments, '');
+
+        this.code = 'javascript:' + source +'(' + JSON.stringify(this.data) + ')';
         return this.code;
     }
 };
@@ -429,14 +436,14 @@ Formlet.formFiller = function(data) {
         }
     };
 
-    // decode data
+    /* decode data */
     var form = document.querySelector(data.form),
         elements = data.elements;
     for (var i = 0; i < elements.length; i++) {
         try {
-            // get element by it's name stored in 0 array item and optional index stored in 1 array element
+            /* get element by it's name stored in 0 array item and optional index stored in 1 array element */
             var element = methods.getElement(form, elements[i][0], elements[i][1]);
-            // call method stored in 2 array item with args stored in 3 array item
+            /* call method stored in 2 array item with args stored in 3 array item */
             methods[elements[i][2]](element, elements[i][3]);
         } catch(e) {}
     }
