@@ -4,7 +4,7 @@
     <Description about="urn:mozilla:install-manifest">
         <em:type>2</em:type> <!-- 2 : Extension -->
         <em:id>formlet@preneta.pl</em:id>
-        <em:version>1.0.2</em:version>
+        <em:version>1.0.3</em:version>
         <em:name>Formlet</em:name>
         <em:description>Saving form data to bookmarklets</em:description>
         <em:creator>Paweł Preneta (Jusuff)</em:creator>
