@@ -6,9 +6,8 @@
     <setting type="bool" pref="extensions.formlet.saveHidden" title="&formlet.saveHidden.title;" desc="&formlet.saveHidden.desc;" />
     <setting type="bool" pref="extensions.formlet.savePasswords" title="&formlet.savePasswords.title;" desc="&formlet.savePasswords.desc;" />
     <setting type="string" pref="extensions.formlet.titlePattern" title="&formlet.titlePattern.title;" desc="&formlet.titlePattern.desc;" />
-
     <setting type="bool" pref="extensions.formlet.showBookmarksDialog" title="&formlet.showBookmarksDialog.title;" desc="&formlet.showBookmarksDialog.desc;" />
-    <setting title="&formlet.bookmarksFolder.title;" type="control" desc="&formlet.bookmarksFolder.desc;" >
-        <button id="bookmarksFolder-control" label="&formlet.bookmarksFolder.label;"/>
+    <setting title="&formlet.bookmarksFolder.title;" type="control" desc="&formlet.bookmarksFolder.desc;">
+        <button id="bookmarksFolder-control" label="&formlet.bookmarksFolder.label;" />
     </setting>
 </vbox>

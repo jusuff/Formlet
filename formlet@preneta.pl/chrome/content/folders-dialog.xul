@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE dialog SYSTEM "chrome://formlet/locale/formlet.dtd">
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xul-overlay href="chrome://browser/content/places/placesOverlay.xul"?>
 <?xml-stylesheet href="chrome://browser/content/places/places.css"?>
 <?xml-stylesheet href="chrome://browser/skin/places/places.css"?>
-<?xul-overlay href="chrome://browser/content/places/placesOverlay.xul"?>
+
+<!DOCTYPE dialog SYSTEM "chrome://formlet/locale/formlet.dtd">
 
 <dialog id="FormletFoldersDialog"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
         title="&formlet.bookmarksFolder.dialogTitle;"
-        buttons="accept,cancel"
         buttoniconaccept="save"
         onload="FormletFoldersDialog.onDialogLoad();"
         ondialogaccept="return FormletFoldersDialog.onDialogAccept();"
-        style="min-height: 20em; min-width: 25em;"
-        persist="screenX screenY width height">
+        style="min-height: 20em; min-width: 25em;">
 
     <script type="application/x-javascript" src="chrome://formlet/content/folders-dialog.js" />
 
     <tree id="bookmarksFolders" flex="1" type="places" hidecolumnpicker="true" seltype="single">
         <treecols>
-            <treecol id="title" flex="1" primary="true" hideheader="true"/>
+            <treecol id="title" flex="1" primary="true" hideheader="true" />
         </treecols>
-        <treechildren id="bookmarksChildren" flex="1"/>
+        <treechildren id="bookmarksChildren" flex="1" />
     </tree>
 </dialog>

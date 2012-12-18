@@ -8,6 +8,21 @@
         <em:name>Formlet</em:name>
         <em:description>Saving form data to bookmarklets</em:description>
         <em:creator>Paweł Preneta (Jusuff)</em:creator>
+        <em:optionsURL>chrome://formlet/content/options.xul</em:optionsURL>
+        <em:optionsType>2</em:optionsType>
+        <em:homepageURL>https://github.com/jusuff/Formlet</em:homepageURL>
+        <em:iconURL>chrome://formlet/skin/formlet32.png</em:iconURL>
+        <em:icon64URL>chrome://formlet/skin/formlet64.png</em:icon64URL>
+
+        <em:localized>
+          <Description>
+            <em:locale>pl</em:locale>
+            <em:name>Formlet</em:name>
+            <em:description>Zapisuje formularze jako skryptozakładki.</em:description>
+            <em:translator>Paweł Preneta (Jusuff)</em:translator>
+          </Description>
+        </em:localized>
+
         <em:targetApplication>
             <Description>
                 <!-- Firefox -->
@@ -16,10 +31,6 @@
                 <em:maxVersion>20.0a1</em:maxVersion>
             </Description>
         </em:targetApplication>
-        <em:optionsURL>chrome://formlet/content/options.xul</em:optionsURL>
-        <em:optionsType>2</em:optionsType>
-        <em:homepageURL>https://github.com/jusuff/Formlet</em:homepageURL>
-        <em:iconURL>chrome://formlet/skin/formlet48.png</em:iconURL>
-        <em:icon64URL>chrome://formlet/skin/formlet64.png</em:icon64URL>
+
     </Description>
 </RDF>

@@ -15,7 +15,5 @@
 <!ENTITY formlet.showBookmarksDialog.title      "Show bookmarks dialog while saving">
 <!ENTITY formlet.showBookmarksDialog.desc       "Unckeck to save bookmarks using default settings.">
 
-<!ENTITY formlet.optionsFialog.title            "Formlet options">
-
 <!ENTITY formlet.context.label                  "Save form with Formlet">
 <!ENTITY formlet.context.accesskey              "F">

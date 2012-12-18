@@ -1,30 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
-<?xml-stylesheet href="chrome://browser/content/places/places.css"?>
-<?xml-stylesheet href="chrome://browser/skin/places/places.css"?>
-<?xul-overlay href="chrome://browser/content/places/placesOverlay.xul" ?>
 
-<!DOCTYPE dialog SYSTEM "chrome://formlet/locale/formlet.dtd">
+<!DOCTYPE dialog SYSTEM "chrome://formlet/locale/formlet-dialog.dtd">
 
 <dialog id="FormletOptionsDialog"
         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        title="&formlet.optionsFialog.title;"
-        buttons="accept,cancel"
-        buttoniconaccept="save"
+        title="&formlet.optionsFialog.label;"
         onload="FormletOptionsDialog.onDialogLoad();"
-        ondialogaccept="return FormletOptionsDialog.onDialogAccept();"
-        persist="screenX screenY width height">
+        ondialogaccept="return FormletOptionsDialog.onDialogAccept();">
 
-    <script type="application/x-javascript" src="chrome://formlet/content/options-dialog.js"/>
+    <script type="application/x-javascript" src="chrome://formlet/content/options-dialog.js" />
 
-    <groupbox align="center" orient="horizontal">
-        <vbox flex="1">
-
-            <checkbox id="saveBlank" label="&formlet.saveBlank.title;"/>
-            <checkbox id="saveHidden" label="&formlet.saveHidden.title;"/>
-            <checkbox id="savePasswords" label="&formlet.savePasswords.title;"/>
-
-        </vbox>
+    <groupbox>
+        <checkbox id="saveBlank" label="&formlet.saveBlank.label;" />
+        <checkbox id="saveHidden" label="&formlet.saveHidden.label;" />
+        <checkbox id="savePasswords" label="&formlet.savePasswords.label;" />
     </groupbox>
+
 </dialog>
