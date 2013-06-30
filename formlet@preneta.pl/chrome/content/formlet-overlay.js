@@ -289,12 +289,29 @@ Formlet.Serializer = {
      * @return {String} Form selector
      */
     getFormSelector: function() {
-        var selector;
+        var element = this.form,
+            selector;
         if (this.form.id) {
             selector = '#' + this.form.id;
         } else {
-            selector = 'form:nth-of-type('+ this.index + 1 +')';
+            var paths = [];
+            for (; element && element.nodeType == Node.ELEMENT_NODE; element = element.parentNode) {
+                var index = 0;
+                for (var sibling = element.previousSibling; sibling; sibling = sibling.previousSibling) {
+                    if (sibling.nodeType == Node.DOCUMENT_TYPE_NODE) {
+                        continue;
+                    }
+                    if (sibling.nodeName == element.nodeName) {
+                        ++index;
+                    }
+                }
+                var tagName = element.nodeName.toLowerCase(),
+                    pathIndex = (index ? ":nth-of-type(" + (index+1) + ")" : "");
+                paths.splice(0, 0, tagName + pathIndex);
+            }
+            selector = paths.length ?  paths.join(">") : null;
         }
+
         return selector;
     },
 
