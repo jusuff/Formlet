@@ -6,6 +6,8 @@
 <!ENTITY formlet.saveHidden.desc                "If this field is checked, then Formlet saves also hidden fields.">
 <!ENTITY formlet.savePasswords.title            "Save password fields">
 <!ENTITY formlet.savePasswords.desc             "Check this field to store passwords. CAUTION: it's not recommended to store password using this extension. Formlet does not encrypt stored data, which can be easily read by unwanted person.">
+<!ENTITY formlet.saveFormId.title               "Save forms ID">
+<!ENTITY formlet.saveFormId.desc                "By default Formlet saves forms ID or path and allows to restore data only in forms with exactly the same ID or path. When this option is unchecked, Formlet saves forms without ID and allows to run bookmarklet on any active (focused) form (but form fields names still have to match).">
 <!ENTITY formlet.titlePattern.title             "Pattern for bookmarks title">
 <!ENTITY formlet.titlePattern.desc              "Set your own bookmarks title pattern. You may use following symbols, which will be dynamically replaced: {TITLE} - will be replaced by page title; {DATE} - will be replaced by current date.">
 <!ENTITY formlet.bookmarksFolder.title          "Bookmarks folder">

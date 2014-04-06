@@ -6,6 +6,8 @@
 <!ENTITY formlet.saveHidden.desc                "Jeśli ta funkcja jest zaznaczona, Formlet będzie zapisywał także ukryte pola formularza.">
 <!ENTITY formlet.savePasswords.title            "Zapisuj pola z hasłami">
 <!ENTITY formlet.savePasswords.desc             "Zaznacz tę funkcję, aby zapisywać także hasła z formularzy. Uwaga! Zapisywanie haseł nie jest zalecane. Formlet nie szyfruje zapisanych danych i mogą one zostać łatwo odczytane przez niepożądane osoby.">
+<!ENTITY formlet.saveFormId.title               "Zapisuj ID formularzy">
+<!ENTITY formlet.saveFormId.desc                "Domyślnie Formlet zapisuje ID lub ścieżkę formularza i pozwala na przywrócenie danych dla formularzy o takim samym ID lub ścieżce. Odznaczenie tej opcji sprawia, że formularze są zapisywane bez ID a następnie zapisaną skryptozakładkę można wykonać na dowolnym aktywnym (focused) formularzu (nazwy pól formularza nadal muszą być zgodne).">
 <!ENTITY formlet.titlePattern.title             "Format nazw zakładek">
 <!ENTITY formlet.titlePattern.desc              "Ustaw własny format nazw zakładek. Następujące symbole są dynamicznie zastępowane: {TITLE} – zostanie zastąpiony przez tytuł strony; {DATE} – zostanie zastąpiony przez bieżącą datę.">
 <!ENTITY formlet.bookmarksFolder.title          "Folder zakładek">

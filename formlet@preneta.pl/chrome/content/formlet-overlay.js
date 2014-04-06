@@ -87,7 +87,8 @@ var Formlet = {
         var defaults = {
                 saveBlank: this.prefs.getBoolPref('saveBlank'),
                 saveHidden: this.prefs.getBoolPref('saveHidden'),
-                savePasswords: this.prefs.getBoolPref('savePasswords')
+                savePasswords: this.prefs.getBoolPref('savePasswords'),
+                saveFormId: this.prefs.getBoolPref('saveFormId')
             },
             showOptionsDialog = this.prefs.getBoolPref('showDialog'),
             options;
@@ -291,7 +292,9 @@ Formlet.Serializer = {
     getFormSelector: function() {
         var element = this.form,
             selector;
-        if (this.form.id) {
+        if (!this.options.saveFormId) {
+            selector = null;
+        } else if (this.form.id) {
             selector = '#' + this.form.id;
         } else {
             var paths = [];
@@ -452,10 +455,27 @@ Formlet.formFiller = function(data) {
             }
         }
     };
-
     /* decode data */
-    var form = document.querySelector(data.form),
-        elements = data.elements;
+    var elements = data.elements,
+        form;
+
+    /* find form */
+    if (data.form === null) {
+        /* get fucused form */
+        form = document.activeElement;
+        /* if this is frame - loop until we find non-frame element */
+        if (form.contentDocument) {
+            while(form.contentDocument) {
+                form = form.contentDocument.activeElement;
+            }
+        }
+        while (form.parentNode && form.nodeName.toLowerCase() !== 'form') {
+            form = form.parentNode;
+        }
+    } else {
+        form = document.querySelector(data.form);
+    }
+
     for (var i = 0; i < elements.length; i++) {
         try {
             /* get element by it's name stored in 0 array item and optional index stored in 1 array element */

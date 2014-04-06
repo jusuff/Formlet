@@ -15,6 +15,7 @@
         <checkbox id="saveBlank" label="&formlet.saveBlank.label;" />
         <checkbox id="saveHidden" label="&formlet.saveHidden.label;" />
         <checkbox id="savePasswords" label="&formlet.savePasswords.label;" />
+        <checkbox id="saveFormId" label="&formlet.saveFormId.label;" />
     </groupbox>
 
 </dialog>
