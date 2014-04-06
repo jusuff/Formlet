@@ -87,7 +87,8 @@ var Formlet = {
         var defaults = {
                 saveBlank: this.prefs.getBoolPref('saveBlank'),
                 saveHidden: this.prefs.getBoolPref('saveHidden'),
-                savePasswords: this.prefs.getBoolPref('savePasswords')
+                savePasswords: this.prefs.getBoolPref('savePasswords'),
+                saveFormId: this.prefs.getBoolPref('saveFormId')
             },
             showOptionsDialog = this.prefs.getBoolPref('showDialog'),
             options;
@@ -291,7 +292,9 @@ Formlet.Serializer = {
     getFormSelector: function() {
         var element = this.form,
             selector;
-        if (this.form.id) {
+        if (!this.options.saveFormId) {
+            selector = null;
+        } else if (this.form.id) {
             selector = '#' + this.form.id;
         } else {
             var paths = [];
@@ -413,49 +416,58 @@ Formlet.formFiller = function(data) {
      * @type {Object}
      */
     var methods = {
-        /**
-         * Gets form element by name or index; for non-unique names (arrays) 3rd param should be passed
-         *
-         * @param {HTMLFormElement} form
-         * @param {String|Number}   name    name attr or index
-         * @param {Number}          [index]
-         * @return {HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement}
-         */
-        getElement: function(form, name, index) {
-            return form[name][index] || form[name];
-        },
-        /**
-         * Set value for text-like inputs and textareas
-         * @param {HTMLInputElement|HTMLTextAreaElement} element
-         * @param {String} value
-         */
-        setValue: function(element, value) {
-            element.value = value;
-        },
-        /**
-         * Set value for checkbox and radio inputs
-         * @param {HTMLInputElement} element
-         * @param {Boolean} value
-         */
-        setChecked: function(element, value) {
-            element.checked = !!value;
-        },
-        /**
-         * Set value for selects
-         * @param {HTMLSelectElement} element
-         * @param {Array} values
-         */
-        setSelected: function(element, values) {
-            var options = element.options;
-            for (var i = 0; i < options.length; i++) {
-                options[i].selected = values.indexOf(options[i].value) >= 0;
+            /**
+             * Gets form element by name or index; for non-unique names (arrays) 3rd param should be passed
+             *
+             * @param {HTMLFormElement} form
+             * @param {String|Number}   name    name attr or index
+             * @param {Number}          [index]
+             * @return {HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement}
+             */
+            getElement: function(form, name, index) {
+                return form[name][index] || form[name];
+            },
+            /**
+             * Set value for text-like inputs and textareas
+             * @param {HTMLInputElement|HTMLTextAreaElement} element
+             * @param {String} value
+             */
+            setValue: function(element, value) {
+                element.value = value;
+            },
+            /**
+             * Set value for checkbox and radio inputs
+             * @param {HTMLInputElement} element
+             * @param {Boolean} value
+             */
+            setChecked: function(element, value) {
+                element.checked = !!value;
+            },
+            /**
+             * Set value for selects
+             * @param {HTMLSelectElement} element
+             * @param {Array} values
+             */
+            setSelected: function(element, values) {
+                var options = element.options;
+                for (var i = 0; i < options.length; i++) {
+                    options[i].selected = values.indexOf(options[i].value) >= 0;
+                }
             }
-        }
-    };
+        },
+        /* decode data */
+        elements = data.elements,
+        form;
 
-    /* decode data */
-    var form = document.querySelector(data.form),
-        elements = data.elements;
+    if (data.form === null) {
+        form = document.activeElement;
+        while (form.parentNode && form.nodeName.toLowerCase() !== 'form') {
+            form = form.parentNode;
+        }
+    } else {
+        form = document.querySelector(data.form);
+    }
+
     for (var i = 0; i < elements.length; i++) {
         try {
             /* get element by it's name stored in 0 array item and optional index stored in 1 array element */

@@ -2,3 +2,4 @@
 <!ENTITY formlet.saveBlank.label                "Save blank fields">
 <!ENTITY formlet.saveHidden.label               "Save hidden fields">
 <!ENTITY formlet.savePasswords.label            "Save password fields">
+<!ENTITY formlet.saveFormId.label               "Save form ID">

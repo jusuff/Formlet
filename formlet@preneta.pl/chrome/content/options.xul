@@ -5,6 +5,7 @@
     <setting type="bool" pref="extensions.formlet.saveBlank" title="&formlet.saveBlank.title;" desc="&formlet.saveBlank.desc;" />
     <setting type="bool" pref="extensions.formlet.saveHidden" title="&formlet.saveHidden.title;" desc="&formlet.saveHidden.desc;" />
     <setting type="bool" pref="extensions.formlet.savePasswords" title="&formlet.savePasswords.title;" desc="&formlet.savePasswords.desc;" />
+    <setting type="bool" pref="extensions.formlet.saveFormId" title="&formlet.saveFormId.title;" desc="&formlet.saveFormId.desc;" />
     <setting type="string" pref="extensions.formlet.titlePattern" title="&formlet.titlePattern.title;" desc="&formlet.titlePattern.desc;" />
     <setting type="bool" pref="extensions.formlet.showBookmarksDialog" title="&formlet.showBookmarksDialog.title;" desc="&formlet.showBookmarksDialog.desc;" />
     <setting title="&formlet.bookmarksFolder.title;" type="control" desc="&formlet.bookmarksFolder.desc;">
