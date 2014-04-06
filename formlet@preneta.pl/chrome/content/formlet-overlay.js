@@ -416,51 +416,59 @@ Formlet.formFiller = function(data) {
      * @type {Object}
      */
     var methods = {
-            /**
-             * Gets form element by name or index; for non-unique names (arrays) 3rd param should be passed
-             *
-             * @param {HTMLFormElement} form
-             * @param {String|Number}   name    name attr or index
-             * @param {Number}          [index]
-             * @return {HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement}
-             */
-            getElement: function(form, name, index) {
-                return form[name][index] || form[name];
-            },
-            /**
-             * Set value for text-like inputs and textareas
-             * @param {HTMLInputElement|HTMLTextAreaElement} element
-             * @param {String} value
-             */
-            setValue: function(element, value) {
-                element.value = value;
-            },
-            /**
-             * Set value for checkbox and radio inputs
-             * @param {HTMLInputElement} element
-             * @param {Boolean} value
-             */
-            setChecked: function(element, value) {
-                element.checked = !!value;
-            },
-            /**
-             * Set value for selects
-             * @param {HTMLSelectElement} element
-             * @param {Array} values
-             */
-            setSelected: function(element, values) {
-                var options = element.options;
-                for (var i = 0; i < options.length; i++) {
-                    options[i].selected = values.indexOf(options[i].value) >= 0;
-                }
-            }
+        /**
+         * Gets form element by name or index; for non-unique names (arrays) 3rd param should be passed
+         *
+         * @param {HTMLFormElement} form
+         * @param {String|Number}   name    name attr or index
+         * @param {Number}          [index]
+         * @return {HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement}
+         */
+        getElement: function(form, name, index) {
+            return form[name][index] || form[name];
         },
-        /* decode data */
-        elements = data.elements,
+        /**
+         * Set value for text-like inputs and textareas
+         * @param {HTMLInputElement|HTMLTextAreaElement} element
+         * @param {String} value
+         */
+        setValue: function(element, value) {
+            element.value = value;
+        },
+        /**
+         * Set value for checkbox and radio inputs
+         * @param {HTMLInputElement} element
+         * @param {Boolean} value
+         */
+        setChecked: function(element, value) {
+            element.checked = !!value;
+        },
+        /**
+         * Set value for selects
+         * @param {HTMLSelectElement} element
+         * @param {Array} values
+         */
+        setSelected: function(element, values) {
+            var options = element.options;
+            for (var i = 0; i < options.length; i++) {
+                options[i].selected = values.indexOf(options[i].value) >= 0;
+            }
+        }
+    };
+    /* decode data */
+    var elements = data.elements,
         form;
 
+    /* find form */
     if (data.form === null) {
+        /* get fucused form */
         form = document.activeElement;
+        /* if this is frame - loop until we find non-frame element */
+        if (form.contentDocument) {
+            while(form.contentDocument) {
+                form = form.contentDocument.activeElement;
+            }
+        }
         while (form.parentNode && form.nodeName.toLowerCase() !== 'form') {
             form = form.parentNode;
         }
