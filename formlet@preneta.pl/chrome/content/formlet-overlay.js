@@ -385,7 +385,7 @@ Formlet.Serializer = {
         var spaces = /(\w+)?\s+/g,
             comments = /(\/\*.*?\*\/)/gi,
             source = Formlet.formFiller.toSource().replace(spaces, function(a, b) {
-                return ['var', 'return'].indexOf(b) >= 0 ? a : b;
+                return ['var', 'return'].indexOf(b) >= 0 ? a : (b || '');
             }).replace(comments, '');
 
         this.code = 'javascript:' + source +'(' + JSON.stringify(this.data) + ')';
