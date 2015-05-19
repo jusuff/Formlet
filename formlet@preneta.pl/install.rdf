@@ -23,6 +23,15 @@
           </Description>
         </em:localized>
 
+        <em:localized>
+          <Description>
+            <em:locale>de</em:locale>
+            <em:name>Formlet</em:name>
+            <em:description>Formulardaten als Lesezeichen speichern.</em:description>
+            <em:translator>naitsirch</em:translator>
+          </Description>
+        </em:localized>
+
         <em:targetApplication>
             <Description>
                 <!-- Firefox -->

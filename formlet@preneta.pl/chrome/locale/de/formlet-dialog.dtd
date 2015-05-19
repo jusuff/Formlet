@@ -1,0 +1,5 @@
+<!ENTITY formlet.optionsFialog.label            "Formlet Optionen zum Speichern">
+<!ENTITY formlet.saveBlank.label                "Leere Felder speichern">
+<!ENTITY formlet.saveHidden.label               "Versteckte Felder speichern">
+<!ENTITY formlet.savePasswords.label            "Passwortfelder speichern">
+<!ENTITY formlet.saveFormId.label               "Formular-ID speichern">
