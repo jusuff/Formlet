@@ -1,0 +1,21 @@
+<!ENTITY formlet.showDialog.title               "Dialog mit Optionen beim Speichern anzeigen">
+<!ENTITY formlet.showDialog.desc                "Abwählen um Formulare zu speichern, ohne das Dialog-Fenster mit den Optionen anzuzeigen (Standardeinstellungen werden benutzt)">
+<!ENTITY formlet.saveBlank.title                "Leere Felder speichern">
+<!ENTITY formlet.saveBlank.desc                 "Wenn dieses Feld ausgewählt ist, speichert Formlet auch leere Felder. Das bedeutet, dass beim Wiederherstellen des Formulars, die als leer gespeicherten Felder geleert werden.">
+<!ENTITY formlet.saveHidden.title               "Versteckte Felder speichern">
+<!ENTITY formlet.saveHidden.desc                "Wenn dieses Feld ausgewählt ist, speichert Formlet auch versteckte Felder.">
+<!ENTITY formlet.savePasswords.title            "Passwortfelder speichern">
+<!ENTITY formlet.savePasswords.desc             "Wähle dieses Feld, um Passwörter zu speichern. ACHTUNG: Es wird nicht empfohlen mit dieser Erweiterung Passwörter zu speichern. Formlet verschlüsselt keine gespeicherten Daten, so dass sie von anderen Personen einfach ausgelesen werden können.">
+<!ENTITY formlet.saveFormId.title               "Formular-ID speichern">
+<!ENTITY formlet.saveFormId.desc                "Standardmäßig speichert Formlet die ID oder den Pfad des Formulars und ermöglicht die Daten in Formularen mit exakt der gleichen ID oder dem gleichen Pfad wiederherzustellen. Wenn diese Option abgewählt ist, speichert Formlet Formulare ohne ID und ermöglicht Lesezeichen auf jedem aktiven (fokussiertem) Formular auszuführen (aber Namen der Formfelder müssen trotzdem übereinstimmen).">
+<!ENTITY formlet.titlePattern.title             "Vorlage für Titel des Lesezeichens">
+<!ENTITY formlet.titlePattern.desc              "Definieren Sie Ihre eigene Vorlage für den Titel des Lesezeichens. Sie können folgende Platzhalter nutzen, die dynamisch ersetzt werden: {TITLE} - wird mit dem Seitentitel ersetzt; {DATE} - wird mit dem aktuellen Datum ersetzt.">
+<!ENTITY formlet.bookmarksFolder.title          "Lesezeichen-Verzeichnis">
+<!ENTITY formlet.bookmarksFolder.desc           "Verzeichnis um die Formulare zu speichern. Anklicken, um es zu ändern.">
+<!ENTITY formlet.bookmarksFolder.label          "Durchsuchen">
+<!ENTITY formlet.bookmarksFolder.dialogTitle    "Lesezeichen-Verzeichnis auswählen">
+<!ENTITY formlet.showBookmarksDialog.title      "Lesezeichen-Dialog beim Speichern anzeigen">
+<!ENTITY formlet.showBookmarksDialog.desc       "Abwählen um Lesezeichen mit den Standardeinstellungen zu speichern.">
+
+<!ENTITY formlet.context.label                  "Formular mit Formlet speichern">
+<!ENTITY formlet.context.accesskey              "F">

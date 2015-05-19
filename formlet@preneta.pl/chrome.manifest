@@ -4,3 +4,4 @@ overlay   chrome://browser/content/browser.xul chrome://formlet/content/formlet-
 
 locale    formlet   en-US         chrome/locale/en-US/
 locale    formlet   pl            chrome/locale/pl/
+locale    formlet   de            chrome/locale/de/
