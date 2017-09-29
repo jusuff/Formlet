@@ -1,0 +1,75 @@
+{
+    "extensionDescription": {
+        "message": "Zapisuje formularze jako skryptozakładki."
+    },
+    "showDialogTitle": {
+        "message": "Pokazuj opcje w menu kontekstowym"
+    },
+    "showDialogDescription": {
+        "message": "Jeśli to pole jest zaznaczone, Formlet będzie wyświetlony w menu kontekstowym jako grupa i możliwa będzie zmiana niektórych ustawień rozszerzenia bezpośrednio w menu kontekstowym."
+    },
+    "saveBlankTitle": {
+        "message": "Zapisz puste pola"
+    },
+    "saveBlankDescription": {
+        "message": "Jeśli to pole jest zaznaczone, Formlet będzie zapisywał także puste pola formularza. Oznacza to, że podczas odtwarzania formularza pola zapisane jako puste zostaną wyczyszczone."
+    },
+    "saveHiddenTitle": {
+        "message": "Zapisz ukryte pola"
+    },
+    "saveHiddenDescription": {
+        "message": "Jeśli to pole jest zaznaczone, Formlet będzie zapisywał także ukryte pola formularza."
+    },
+    "savePasswordsTitle": {
+        "message": "Zapisz pola z hasłami"
+    },
+    "savePasswordsDescription": {
+        "message": "Zaznacz to pole, aby zapisywać także hasła z formularzy. Uwaga! Zapisywanie haseł nie jest zalecane. Formlet nie szyfruje zapisanych danych i mogą one zostać łatwo odczytane przez niepożądane osoby."
+    },
+    "saveFormIdTitle": {
+        "message": "Zapisz ID formularza"
+    },
+    "saveFormIdDescription": {
+        "message": "Domyślnie Formlet zapisuje ID lub ścieżkę formularza i pozwala na przywrócenie danych dla formularzy o takim samym ID lub ścieżce. Odznaczenie tej opcji sprawia, że formularze są zapisywane bez ID a następnie zapisaną skryptozakładkę można wykonać na dowolnym aktywnym (focused) formularzu (nazwy pól formularza nadal muszą być zgodne)."
+    },
+    "titlePatternTitle": {
+        "message": "Format nazw zakładek"
+    },
+    "titlePatternDescription": {
+        "message": "Ustaw własny format nazw zakładek. Następujące symbole są dynamicznie zastępowane: {TITLE} – zostanie zastąpiony przez tytuł strony; {DATE} – zostanie zastąpiony przez bieżącą datę."
+    },
+    "bookmarksFolderTitle": {
+        "message": "Folder zakładek"
+    },
+    "bookmarksFolderDescription": {
+        "message": "Folder, w którym zapisywane będą zakładki z danymi formularzy (bookmarklets). Na przycisku obok wyświetlany jest aktualnie wybrany folder. Kliknij przycisk, by wybrać inny folder."
+    },
+    "bookmarksFolderBrowserBack": {
+        "message": "Wróc"
+    },
+    "bookmarksFolderBrowserSelectThis": {
+        "message": "Wybierz ten folder ($DIR$)",
+        "placeholders": {
+            "dir" : {
+                "content" : "$1"
+            }
+        }
+    },
+    "contextMenuLabel": {
+        "message": "Zapisz formularz za pomocą Formlet"
+    },
+    "contextMenuSaveForm": {
+        "message": "Zapisz formularz"
+    },
+    "notificationTitle": {
+        "message": "Formlet - formularz został zapisany"
+    },
+    "notificationContent": {
+        "message": "Bookmarklet \"$TITLE$\" został utworzony.",
+        "placeholders": {
+            "title" : {
+                "content" : "$1"
+            }
+        }
+    }
+}
