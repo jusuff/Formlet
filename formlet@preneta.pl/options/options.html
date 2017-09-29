@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="options.css">
+    <!--<link rel="stylesheet" type="text/css" href="chrome://browser/content/extension.css">-->
+</head>
+
+<body>
+<form id="formlet-settings">
+
+    <div class="row">
+        <div class="browser-style">
+            <input type="checkbox" id="saveBlank" value="on">
+            <label for="saveBlank" class="browser-style-label" data-i18n="saveBlankTitle"></label>
+        </div>
+        <p data-i18n="saveBlankDescription"></p>
+    </div>
+
+    <div class="row">
+        <div class="browser-style">
+            <input type="checkbox" id="saveHidden" value="on">
+            <label for="saveHidden" class="browser-style-label" data-i18n="saveHiddenTitle"></label>
+        </div>
+        <p data-i18n="saveHiddenDescription"></p>
+    </div>
+
+    <div class="row">
+        <div class="browser-style">
+            <input type="checkbox" id="savePasswords" value="on">
+            <label for="savePasswords" class="browser-style-label" data-i18n="savePasswordsTitle"></label>
+        </div>
+        <p data-i18n="savePasswordsDescription"></p>
+    </div>
+
+    <div class="row">
+        <div class="browser-style">
+            <input type="checkbox" id="saveFormId" value="on">
+            <label for="saveFormId" class="browser-style-label" data-i18n="saveFormIdTitle"></label>
+        </div>
+        <p data-i18n="saveFormIdDescription"></p>
+    </div>
+
+    <div class="row">
+        <div class="browser-style">
+            <input type="checkbox" id="showDialog" value="on">
+            <label for="showDialog" class="browser-style-label"data-i18n="showDialogTitle"></label>
+        </div>
+        <p data-i18n="showDialogDescription"></p>
+    </div>
+
+    <div class="row">
+        <div class="browser-style text-section">
+            <label for="titlePattern" class="browser-style-label" data-i18n="titlePatternTitle"></label>
+            <input id="titlePattern" type="text" value=""/>
+        </div>
+        <p data-i18n="titlePatternDescription"></p>
+    </div>
+
+    <div class="row">
+        <div class="browser-style text-section">
+            <label for="bookmarksFolder" class="browser-style-label" data-i18n="bookmarksFolderTitle"></label>
+            <div id="bookmarksContainer">
+                <button id="bookmarksFolder" class="browser-style" value=""></button>
+            </div>
+        </div>
+        <p data-i18n="bookmarksFolderDescription"></p>
+    </div>
+
+</form>
+<script src="options.js"></script>
+</body>
+
+</html>

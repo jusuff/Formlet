@@ -1,0 +1,75 @@
+{
+    "extensionDescription": {
+        "message": "Saving form data to bookmarklets."
+    },
+    "showDialogTitle": {
+        "message": "Show options in context menu"
+    },
+    "showDialogDescription": {
+        "message": "If this field is checked, Formlet will be displayed in context menu as a group and you will be able to change some Formlet options in context menu."
+    },
+    "saveBlankTitle": {
+        "message": "Save empty fields"
+    },
+    "saveBlankDescription": {
+        "message": "If this field is checked, then Formlet saves also empty fields. This means that while restoring form - fields saved as empty will be cleared."
+    },
+    "saveHiddenTitle": {
+        "message": "Save hidden fields"
+    },
+    "saveHiddenDescription": {
+        "message": "If this field is checked, then Formlet saves also hidden fields."
+    },
+    "savePasswordsTitle": {
+        "message": "Save password fields"
+    },
+    "savePasswordsDescription": {
+        "message": "Check this field to store passwords. CAUTION: it's not recommended to store password using this extension. Formlet does not encrypt stored data, which can be easily read by unwanted person."
+    },
+    "saveFormIdTitle": {
+        "message": "Save form ID"
+    },
+    "saveFormIdDescription": {
+        "message": "By default Formlet saves form ID or path and allows to restore data only in form with exactly the same ID or path. When this option is unchecked, Formlet saves form without ID and allows to run bookmarklet on any active (focused) form (but form fields names still have to match)."
+    },
+    "titlePatternTitle": {
+        "message": "Pattern for bookmarks title"
+    },
+    "titlePatternDescription": {
+        "message": "Set your own bookmarks title pattern. You may use following symbols, which will be dynamically replaced: {TITLE} - will be replaced by page title; {DATE} - will be replaced by current date."
+    },
+    "bookmarksFolderTitle": {
+        "message": "Bookmarks folder"
+    },
+    "bookmarksFolderDescription": {
+        "message": "Folder to store your saved forms (bookmarklets). Click to change it."
+    },
+    "bookmarksFolderBrowserBack": {
+        "message": "Back"
+    },
+    "bookmarksFolderBrowserSelectThis": {
+        "message": "Select this folder ($DIR$)",
+        "placeholders": {
+            "dir" : {
+                "content" : "$1"
+            }
+        }
+    },
+    "contextMenuLabel": {
+        "message": "Save form with Formlet"
+    },
+    "contextMenuSaveForm": {
+        "message": "Save form"
+    },
+    "notificationTitle": {
+        "message": "Formlet - form saved"
+    },
+    "notificationContent": {
+        "message": "Bookmarklet \"$TITLE$\" has been created.",
+        "placeholders": {
+            "title" : {
+                "content" : "$1"
+            }
+        }
+    }
+}

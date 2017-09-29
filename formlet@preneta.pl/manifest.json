@@ -1,0 +1,46 @@
+{
+    "manifest_version": 2,
+    "name": "Formlet2",
+    "description": "__MSG_extensionDescription__",
+    "version": "2.0",
+
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["formlet.js"]
+        }
+    ],
+
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    },
+
+    "options_ui": {
+        "page": "options/options.html",
+        "browser_style": true
+    },
+
+    "permissions": [
+        "activeTab",
+        "bookmarks",
+        "contextMenus",
+        "notifications",
+        "storage"
+    ],
+
+    "icons": {
+        "16": "icons/formlet-16.png",
+        "32": "icons/formlet-32.png",
+        "48": "icons/formlet-48.png"
+    },
+
+    "applications": {
+        "gecko": {
+            "id": "formlet2@preneta.pl"
+        }
+    },
+
+    "default_locale": "en_US"
+}

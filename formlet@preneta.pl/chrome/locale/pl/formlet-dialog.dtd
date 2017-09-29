@@ -1,5 +1,0 @@
-<!ENTITY formlet.optionsFialog.label            "Opcje zapisu Formlet">
-<!ENTITY formlet.saveBlank.label                "Zapisz puste pola">
-<!ENTITY formlet.saveHidden.label               "Zapisz ukryte pola">
-<!ENTITY formlet.savePasswords.label            "Zapisz pola z hasłami">
-<!ENTITY formlet.saveFormId.label               "Zapisz ID formularza">
