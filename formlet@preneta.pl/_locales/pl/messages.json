@@ -50,8 +50,8 @@
     "bookmarksFolderBrowserSelectThis": {
         "message": "Wybierz ten folder ($DIR$)",
         "placeholders": {
-            "dir" : {
-                "content" : "$1"
+            "dir": {
+                "content": "$1"
             }
         }
     },
@@ -67,8 +67,8 @@
     "notificationContent": {
         "message": "Bookmarklet \"$TITLE$\" został utworzony.",
         "placeholders": {
-            "title" : {
-                "content" : "$1"
+            "title": {
+                "content": "$1"
             }
         }
     }

@@ -2,38 +2,48 @@ div.row {
     border-top: 1px solid #c1c1c1;
     padding: 0.5em;
 }
+
 div.row .row-header {
     font-size: 1.25em;
 }
+
 div.row .row-header label,
 .dwa label {
     display: inline-block;
     width: 30%;
 }
+
 div.row p {
     color: graytext;
 }
+
 .row label.browser-style-label {
     font-size: 1.25rem;
 }
+
 .row .browser-style input[type=text] {
     min-width: 30%;
 }
+
 .row button.browser-style {
     width: 100%;
 }
+
 .row .text-section label {
     display: inline-block;
     width: 30%;
 }
+
 #bookmarksContainer {
     display: inline-block;
     width: 30%;
     position: relative;
 }
+
 .bookmark-selector.hidden {
     /*display: none;*/
 }
+
 .bookmark-selector {
     width: 100%;
     max-height: 20rem;
@@ -43,10 +53,12 @@ div.row p {
     border: 1px solid #b1b1b1;
     background: #FCFCFC;
 }
+
 .bookmark-list {
     padding: 0;
     margin: 0;
 }
+
 .bookmark-list li {
     list-style: none;
     display: block;
@@ -55,12 +67,15 @@ div.row p {
     border-bottom: 1px solid #c1c1c1;
     cursor: pointer;
 }
+
 .bookmark-list li:last-child {
     border-bottom: none;
 }
+
 .bookmark-list li.selected {
     font-weight: bold;
 }
+
 .bookmark-list li::before {
     content: "";
     background-position: center;
@@ -73,16 +88,20 @@ div.row p {
     float: left;
     margin-right: 6px;
 }
+
 li.bookmark::before {
     background-image: url(data:image/svg+xml;base64,PCEtLSBUaGlzIFNvdXJjZSBDb2RlIEZvcm0gaXMgc3ViamVjdCB0byB0aGUgdGVybXMgb2YgdGhlIE1vemlsbGEgUHVibGljCiAgIC0gTGljZW5zZSwgdi4gMi4wLiBJZiBhIGNvcHkgb2YgdGhlIE1QTCB3YXMgbm90IGRpc3RyaWJ1dGVkIHdpdGggdGhpcwogICAtIGZpbGUsIFlvdSBjYW4gb2J0YWluIG9uZSBhdCBodHRwOi8vbW96aWxsYS5vcmcvTVBMLzIuMC8uIC0tPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgMTYgMTYiPgogIDxwYXRoIGZpbGw9ImNvbnRleHQtZmlsbCIgZD0iTTMuOCAxNS45MjJhMS4xIDEuMSAwIDAgMS0xLjA5LTEuMjUzbC42MDktNC4zNkwuMzkyIDcuMTYzYTEuMSAxLjEgMCAwIDEgLjYxNi0xLjgzM2w0LjA4MS0uNzNMNy4wMTUuNzM0YTEuMSAxLjEgMCAwIDEgMS45NjkgMEwxMC45MTEgNC42bDQuMDg0LjcyOWExLjEgMS4xIDAgMCAxIC42MTEgMS44MzNMMTIuNjggMTAuMzFsLjYwOSA0LjM1OWExLjEgMS4xIDAgMCAxLTEuNiAxLjEyN0w4IDEzLjg3MyA0LjMwNyAxNS44YTEuMDkzIDEuMDkzIDAgMCAxLS41MDcuMTIyem0tLjQxNS0xLjl6bTkuMjI4IDB6TTIuOTgxIDcuMDFsMi40NTEgMi42MzUtLjUgMy41NzJMOCAxMS42MThsMy4wNjcgMS42LS41LTMuNTcyIDIuNDUxLTIuNjM2LTMuNDUtLjYxNkw4IDMuMjQ0bC0xLjU2OSAzLjE1em0xMS42NTkuMjl6bS0xMy4yNzggMHptMTIuNzgtMS41em0tMTIuMjg2IDB6Ij48L3BhdGg+Cjwvc3ZnPgo=);
 }
+
 li.header::before {
     background-image: url(data:image/svg+xml;base64,PCEtLSBUaGlzIFNvdXJjZSBDb2RlIEZvcm0gaXMgc3ViamVjdCB0byB0aGUgdGVybXMgb2YgdGhlIE1vemlsbGEgUHVibGljCiAgIC0gTGljZW5zZSwgdi4gMi4wLiBJZiBhIGNvcHkgb2YgdGhlIE1QTCB3YXMgbm90IGRpc3RyaWJ1dGVkIHdpdGggdGhpcwogICAtIGZpbGUsIFlvdSBjYW4gb2J0YWluIG9uZSBhdCBodHRwOi8vbW96aWxsYS5vcmcvTVBMLzIuMC8uIC0tPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgMTYgMTYiPgogIDxwYXRoIGZpbGw9ImNvbnRleHQtZmlsbCIgZD0iTTEzIDExYTEgMSAwIDAgMS0uNzA3LS4yOTNMOCA2LjQxNGwtNC4yOTMgNC4yOTNhMSAxIDAgMCAxLTEuNDE0LTEuNDE0bDUtNWExIDEgMCAwIDEgMS40MTQgMGw1IDVBMSAxIDAgMCAxIDEzIDExeiI+PC9wYXRoPgo8L3N2Zz4K);
 }
+
 li.folder::before {
     background-image: url(data:image/svg+xml;base64,PCEtLSBUaGlzIFNvdXJjZSBDb2RlIEZvcm0gaXMgc3ViamVjdCB0byB0aGUgdGVybXMgb2YgdGhlIE1vemlsbGEgUHVibGljCiAgIC0gTGljZW5zZSwgdi4gMi4wLiBJZiBhIGNvcHkgb2YgdGhlIE1QTCB3YXMgbm90IGRpc3RyaWJ1dGVkIHdpdGggdGhpcwogICAtIGZpbGUsIFlvdSBjYW4gb2J0YWluIG9uZSBhdCBodHRwOi8vbW96aWxsYS5vcmcvTVBMLzIuMC8uIC0tPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgMTYgMTYiPgogIDxwYXRoIGZpbGw9ImNvbnRleHQtZmlsbCIgZD0iTTE0IDNIOC4xNTFMNi41ODQgMS41MzhBMiAyIDAgMCAwIDUuMjE5IDFIMmEyIDIgMCAwIDAtMiAydjEwYTIgMiAwIDAgMCAyIDJoMTJhMiAyIDAgMCAwIDItMlY1YTIgMiAwIDAgMC0yLTJ6TTUuMjE5IDNsMS4wNzIgMUgyVjN6TTE0IDEzSDJWNWg2di0uMDE0Yy4wNSAwIC4xLjAxNC4xNTEuMDE0SDE0eiI+PC9wYXRoPgo8L3N2Zz4K);
 }
-.bookmark-list li.folder.children::after{
+
+.bookmark-list li.folder.children::after {
     content: "";
     background-position: center;
     background-repeat: no-repeat;

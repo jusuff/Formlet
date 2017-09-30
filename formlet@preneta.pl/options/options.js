@@ -150,7 +150,7 @@ class Folder extends Input {
         let parents = [],
             element = event.target;
         parents.push(element);
-        while(element.parentNode) {
+        while (element.parentNode) {
             parents.unshift(element.parentNode);
             element = element.parentNode;
         }

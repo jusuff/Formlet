@@ -70,7 +70,7 @@ const formFiller = function(data) {
         form = document.activeElement;
         /* if this is frame - loop until we find non-frame element */
         if (form.contentDocument) {
-            while(form.contentDocument) {
+            while (form.contentDocument) {
                 form = form.contentDocument.activeElement;
             }
         }
@@ -87,7 +87,7 @@ const formFiller = function(data) {
             var element = methods.getElement(form, elements[i][0], elements[i][1]);
             /* call method stored in 2 array item with args stored in 3 array item */
             methods[elements[i][2]](element, elements[i][3]);
-        } catch(e) {}
+        } catch (e) {}
     }
 };
 
@@ -150,10 +150,10 @@ class Serializer {
                     }
                 }
                 let tagName = element.nodeName.toLowerCase(),
-                    pathIndex = (index ? ":nth-of-type(" + (index+1) + ")" : "");
+                    pathIndex = (index ? ":nth-of-type(" + (index + 1) + ")" : "");
                 paths.splice(0, 0, tagName + pathIndex);
             }
-            selector = paths.length ?  paths.join(">") : null;
+            selector = paths.length ? paths.join(">") : null;
         }
 
         return selector;
@@ -232,7 +232,7 @@ class Serializer {
                 return ['var', 'return'].indexOf(b) >= 0 ? a : (b || '');
             }).replace(comments, '');
 
-        this.code = 'javascript:' + source +'(' + JSON.stringify(this.data) + ')';
+        this.code = 'javascript:' + source + '(' + JSON.stringify(this.data) + ')';
         return this.code;
     };
 }
