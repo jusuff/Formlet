@@ -1,4 +1,14 @@
+/**
+ * Text input class.
+ * It setups and updates text input value and cares about storing changes.
+ */
 class Input {
+    /**
+     * Setups input element.
+     *
+     * @param {string}          id      HTML Element Id
+     * @param {string|boolean}  value   Initial element value
+     */
     constructor(id, value) {
         this.id = id;
         this.element = document.getElementById(id);
@@ -6,43 +16,80 @@ class Input {
         this.setup();
     }
 
+    /**
+     * Starts observer for changes in text input.
+     */
     setup() {
         this.element.addEventListener('change', () => {
             browser.storage.sync.set({[this.id]: this.element.value});
         });
     }
 
+    /**
+     * Sets input value.
+     *
+     * @param {string} value
+     */
     setValue(value) {
         this.element.value = value;
     }
 
+    /**
+     * Gets input value.
+     */
     getValue() {
         return this.element.value;
     }
 }
 
+/**
+ * Checkbox input class.
+ *
+ * @extends Input
+ */
 class Checkbox extends Input {
+    /** @inheritdoc */
     setup() {
         this.element.addEventListener('click', () => {
             browser.storage.sync.set({[this.id]: this.element.checked});
         });
     }
 
+    /**
+     * Sets checkbox checked state.
+     *
+     * @param {boolean} value
+     */
     setValue(value) {
         this.element.checked = value;
     }
 
+    /** @inheritdoc */
     getValue() {
         return this.element.checked;
     }
 }
 
+/**
+ * Bookmarks browser class.
+ * Implements Input class for button element and adds bookmarks browser widget.
+ *
+ * @extends Input
+ */
 class Folder extends Input {
+    /**
+     * Initializes widget.
+     */
     setup() {
         this.setupContainer();
         this.element.addEventListener('click', this.toggle.bind(this));
     }
 
+    /**
+     * Sets bookmark folder as button value and folder path as buttons text.
+     *
+     * @param {string} value
+     */
     setValue(value) {
         Folder.getBookmarksFolderPath(value).then(path => {
             this.element.innerHTML = path;
@@ -50,6 +97,9 @@ class Folder extends Input {
         });
     }
 
+    /**
+     * Setups container for bookmark folder browser.
+     */
     setupContainer() {
         this.container = document.createElement('div');
         this.container.className = 'bookmark-selector';
@@ -58,6 +108,14 @@ class Folder extends Input {
         this.container.addEventListener('click', this.itemOnClick.bind(this));
     };
 
+    /**
+     * Builds folder list for given tree level.
+     *
+     * @param {browser.bookmarks.BookmarkTreeNode}  tree        Bookmarks node for which list has to be build
+     * @param {string}                              currentItem Id of currently selected bookmark
+     *
+     * @returns {Promise<HTMLUListElement>} List for given bookmarks tree level
+     */
     buildList(tree, currentItem) {
         return new Promise((resolve) => {
             let oldList = this.container.querySelector('ul'),
@@ -102,6 +160,12 @@ class Folder extends Input {
         });
     };
 
+    /**
+     * Handles clicks on folder list.
+     * Expands items with children or saves selected folder.
+     *
+     * @param {Event}   event   Click event
+     */
     itemOnClick(event) {
         let element = event.target,
             classList = Array.from(element.classList),
@@ -114,10 +178,20 @@ class Folder extends Input {
         }
     };
 
+    /**
+     * Checks whether the widget is visible.
+     *
+     * @returns {boolean}
+     */
     isVisible() {
         return this.container.style.display === 'block';
     };
 
+    /**
+     * Toggles folder browser widget.
+     *
+     * @param {Event}   [event] Click event
+     */
     toggle(event) {
         if (event !== undefined && event.preventDefault !== undefined) {
             event.preventDefault();
@@ -129,6 +203,9 @@ class Folder extends Input {
         }
     };
 
+    /**
+     * Gets folder tree and displays folder browser widget.
+     */
     show() {
         this.hideonBlurBound = this.hideOnBlur.bind(this);
         browser.bookmarks.get(this.element.value).then(item => {
@@ -141,11 +218,19 @@ class Folder extends Input {
         });
     };
 
+    /**
+     * Hides folder browser.
+     */
     hide() {
         this.container.style.display = 'none';
         document.body.removeEventListener('click', this.hideonBlurBound);
     };
 
+    /**
+     * Observes document outside folder browser and hides browser is user click outside it.
+     *
+     * @param {Event} event Click event
+     */
     hideOnBlur(event) {
         let parents = [],
             element = event.target;
@@ -159,12 +244,24 @@ class Folder extends Input {
         }
     }
 
+    /**
+     * Stores folder id.
+     *
+     * @param {string} id Bookmarks folder id
+     */
     save(id) {
         browser.storage.sync.set({[this.element.id]: id}).then(() => {
             this.setValue(id);
         });
     }
 
+    /**
+     * Builds folder path using bookmark and its parents names.
+     *
+     * @param {string} id Bookmarks folder id
+     *
+     * @returns {Promise.<string>}
+     */
     static async getBookmarksFolderPath(id) {
         let [item] = await browser.bookmarks.get(id),
             path = [item.title];
@@ -177,8 +274,19 @@ class Folder extends Input {
     }
 }
 
+/**
+ * Preferences form fields storage.
+ *
+ * @type {Object}
+ */
 const fields = {};
 
+/**
+ * Translates i18n messages in html options page.
+ *
+ * @author erosman
+ * @see {@link https://github.com/erosman/HTML-Internationalization/blob/master/internationalization.js}
+ */
 function translate() {
     for (let node of document.querySelectorAll('[data-i18n]')) {
         let [text, attr] = node.dataset.i18n.split('|');
@@ -187,6 +295,11 @@ function translate() {
     }
 }
 
+/**
+ * Setups preferences page.
+ *
+ * @param {FormletPrefs} prefs Formlet preferences object
+ */
 function setupPrefsUI(prefs) {
     fields.saveBlank = new Checkbox('saveBlank', prefs.saveBlank);
     fields.saveHidden = new Checkbox('saveHidden', prefs.saveHidden);
@@ -201,6 +314,12 @@ function setupPrefsUI(prefs) {
     browser.storage.onChanged.addListener(updatePrefsUI);
 }
 
+/**
+ * Updates preferences page on storage change.
+ *
+ * @param {browser.storage.StorageChange}   changes  Object with changed preferences
+ * @param {string}                          area     Storage type
+ */
 function updatePrefsUI(changes, area) {
     for (let change in changes) {
         if (fields[change].value !== changes[change].newValue) {
@@ -209,5 +328,8 @@ function updatePrefsUI(changes, area) {
     }
 }
 
+/**
+ *  Get extension preferences from storage and setup preferences page.
+ */
 browser.storage.sync.get().then(setupPrefsUI);
 

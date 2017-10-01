@@ -25,8 +25,8 @@ const formFiller = function(data) {
          * Gets form element by name or index; for non-unique names (arrays) 3rd param should be passed
          *
          * @param {HTMLFormElement} form
-         * @param {String|Number}   name    name attr or index
-         * @param {Number}          [index]
+         * @param {string|number}   name    name attr or index
+         * @param {number}          [index]
          * @return {HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement}
          */
         getElement: function(form, name, index) {
@@ -35,7 +35,7 @@ const formFiller = function(data) {
         /**
          * Set value for text-like inputs and textareas
          * @param {HTMLInputElement|HTMLTextAreaElement} element
-         * @param {String} value
+         * @param {string} value
          */
         setValue: function(element, value) {
             element.value = value;
@@ -43,7 +43,7 @@ const formFiller = function(data) {
         /**
          * Set value for checkbox and radio inputs
          * @param {HTMLInputElement} element
-         * @param {Boolean} value
+         * @param {boolean} value
          */
         setChecked: function(element, value) {
             element.checked = !!value;
@@ -102,13 +102,14 @@ class Serializer {
     /**
      * Initialize sterilizer routine
      *
-     * @param {HTMLElement} form                    Form element to serialize
-     * @param {Object}      options                 {Formlet} options object
-     * @param {Boolean}     options.saveBlank
-     * @param {Boolean}     options.saveHidden
-     * @param {Boolean}     options.savePasswords
+     * @param {HTMLElement}     form                    Form element to serialize
+     * @param {FormletPrefs}    options                 {Formlet} options object
+     * @param {boolean}         options.saveBlank
+     * @param {boolean}         options.saveHidden
+     * @param {boolean}         options.savePasswords
+     * @param {boolean}         options.saveForm
      *
-     * @return {String} Bookmarklet code
+     * @return {string} Bookmarklet code
      */
     constructor(form, options) {
         this.form = form;
@@ -128,7 +129,7 @@ class Serializer {
     /**
      * Generates form selector using it's id or position inside document
      *
-     * @return {String} Form selector
+     * @return {string} Form selector
      */
     getFormSelector() {
         let element = this.form,
@@ -219,7 +220,7 @@ class Serializer {
     /**
      * Creates code for bookmarklet
      *
-     * @return {String} Bookmarklet code
+     * @return {string} Bookmarklet code
      */
     save() {
         // strip filler method from whitespaces and comments
@@ -237,6 +238,13 @@ class Serializer {
     };
 }
 
+/**
+ * Finds parent form for given element
+ *
+ * @param {HTMLElement}     element     HTML element (for example input) for which the form is sought
+ *
+ * @returns {(HTMLElement|boolean)} Form element of false
+ */
 function findForm(element) {
     while (element && element.parentNode && element.nodeName.toLowerCase() !== 'form') {
         element = element.parentNode;
@@ -247,30 +255,40 @@ function findForm(element) {
 
 }
 
+/**
+ * Invokes form serializer
+ *
+ * @param {FormletPrefs}    options     Formlet options object
+ * @param {HTMLElement}     [element]   HTML element for which the saving was initialized (form or one of the form elements)
+ *
+ * @returns {string} Bookmarklet code return by {Serializer}
+ */
 function saveForm(options, element = null) {
     let form = findForm(element || document.activeElement),
-        x = new Serializer(form, options);
-    return x.save();
+        serializer = new Serializer(form, options);
+    return serializer.save();
 }
 
-window.addEventListener("mousedown", event => {
-    if (event.button === 2) {
-        setupContextMenu(event);
-    }
-}, true);
-
-window.addEventListener("keydown", event => {
-    if (event.shiftKey && event.key === "F10" || event.key === "ContextMenu") {
-        setupContextMenu(event);
-    }
-}, true);
-
+/**
+ * Notifies background script whether a click occurred on the form
+ *
+ * @param {Event}   event   Event invoking context menu
+ */
 function setupContextMenu(event) {
     browser.runtime.sendMessage({
         formFound: !!findForm(event.target)
     });
 }
 
+/**
+ * Receives messages from background script with a form saving request and calls form save routine.
+ *
+ * @param {FormletPrefs}                    request     Formlet options object
+ * @param {browser.runtime.MessageSender}   sender      Object with details about the message sender
+ * @param {function}                        callback
+ *
+ * @returns {Promise} On success promise will be resolved with object containing document title and bookmarklet code
+ */
 function handleHessage(request, sender, callback) {
     if (sender.id === browser.runtime.id) {
         return new Promise((resolve) => {
@@ -283,4 +301,23 @@ function handleHessage(request, sender, callback) {
     }
 }
 
+/**
+ * Bind observers for mousedown and keydown events.
+ * Webextension API does not provide info about target element for event that invoked context menu.
+ * Therefore we need to track these events and verify that the menu was called for the form or any of the form elements.
+ */
+window.addEventListener("mousedown", event => {
+    if (event.button === 2) {
+        setupContextMenu(event);
+    }
+}, true);
+window.addEventListener("keydown", event => {
+    if (event.shiftKey && event.key === "F10" || event.key === "ContextMenu") {
+        setupContextMenu(event);
+    }
+}, true);
+
+/**
+ * Setup observer for background script messages
+ */
 browser.runtime.onMessage.addListener(handleHessage);

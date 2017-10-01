@@ -1,5 +1,14 @@
+/**
+ * Cache for extension preferences
+ * @type {FormletPrefs}
+ */
 let prefsCache;
 
+/**
+ * Setups context menu according to Formlet preferences
+ *
+ * @param {FormletPrefs} prefs Formlet preferences object
+ */
 function setupMenu(prefs) {
     browser.contextMenus.removeAll().then(() => {
         if (prefs.showDialog) {
@@ -65,6 +74,12 @@ function setupMenu(prefs) {
     });
 }
 
+/**
+ * Updates prefs cache and context menu on storage changes
+ *
+ * @param {browser.storage.StorageChange}   changes  Object with changed preferences
+ * @param {string}                          area     Storage type
+ */
 function updatePrefs(changes, area) {
     for (let pref in changes) {
         prefsCache[pref] = changes[pref].newValue;
@@ -72,6 +87,13 @@ function updatePrefs(changes, area) {
     setupMenu(prefsCache);
 }
 
+/**
+ * Handles context menu command.
+ * Depending on clicked item - updates preferences or calls content script and saves form.
+ *
+ * @param {browser.contextMenus.OnClickData}    info
+ * @param {browser.tabs.Tab}                    tab
+ */
 function menuCommand(info, tab) {
 
     if (info.menuItemId.includes('formlet')) {
@@ -101,14 +123,32 @@ function menuCommand(info, tab) {
     }
 }
 
-function handleMessage(request, sender, sendResponse) {
+/**
+ * Receives messages from content script.
+ * The message is sent when context menu event is triggered and indicates whether the menu was triggered
+ * for the form or element inside the form.
+ * Depending on this, it enables or disables the context menu item with the form save command.
+ *
+ * @param {Object}                          request
+ * @param {browser.runtime.MessageSender}   sender      Object with details about the message sender
+ * @param {function}                        callback
+ */
+function handleMessage(request, sender, callback) {
     let id = prefsCache.showDialog ? 'formlet-save' : 'formlet';
     browser.contextMenus.update(id, {
         enabled: request.formFound
     });
 }
 
+/**
+ * Setups default params on extension installation or update.
+ *
+ * @param {Object}  details
+ */
 function setupDefaults(details) {
+    /**
+     * @typedef {{saveBlank: boolean, saveHidden: boolean, savePasswords: boolean, saveFormId: boolean, showDialog: boolean, titlePattern: string, bookmarksFolder: string}} FormletPrefs
+     */
     let defaults = {
         saveBlank: false,
         saveHidden: false,
@@ -122,6 +162,12 @@ function setupDefaults(details) {
     browser.storage.sync.get(defaults).then(result => browser.storage.sync.set(result));
 }
 
+/**
+ * Initialisation routine.
+ * Setups menu and observers.
+ *
+ * @param {FormletPrefs} prefs
+ */
 function init(prefs) {
 
     prefsCache = prefs;
@@ -133,5 +179,11 @@ function init(prefs) {
     browser.runtime.onMessage.addListener(handleMessage);
 }
 
+/**
+ * Get extension preferences from storage and init extension
+ */
 browser.storage.sync.get().then(init);
+/**
+ * Listen to installation event
+ */
 browser.runtime.onInstalled.addListener(setupDefaults);
