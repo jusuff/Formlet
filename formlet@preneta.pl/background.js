@@ -21,7 +21,6 @@ function setupMenu(prefs) {
                 id: 'formlet-save',
                 parentId: 'formlet',
                 title: browser.i18n.getMessage('contextMenuSaveForm'),
-                enabled: false,
                 contexts: ['all']
             });
             browser.contextMenus.create({
@@ -67,7 +66,6 @@ function setupMenu(prefs) {
             browser.contextMenus.create({
                 id: 'formlet',
                 title: browser.i18n.getMessage('contextMenuLabel'),
-                enabled: false,
                 contexts: ['all']
             });
         }
