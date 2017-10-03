@@ -92,7 +92,7 @@ class Folder extends Input {
      */
     setValue(value) {
         Folder.getBookmarksFolderPath(value).then(path => {
-            this.element.innerHTML = path;
+            this.element.textContent = path;
             this.element.value = value;
         });
     }
@@ -127,11 +127,11 @@ class Folder extends Input {
                     headerItem = document.createElement('li');
                 headerBack.className = 'header';
                 headerBack.dataset.id = tree.parentId;
-                headerBack.innerHTML = browser.i18n.getMessage('bookmarksFolderBrowserBack');
+                headerBack.textContent = browser.i18n.getMessage('bookmarksFolderBrowserBack');
                 list.appendChild(headerBack);
                 headerItem.className = 'folder';
                 headerItem.dataset.id = tree.id;
-                headerItem.innerHTML = browser.i18n.getMessage('bookmarksFolderBrowserSelectThis', tree.title);
+                headerItem.textContent = browser.i18n.getMessage('bookmarksFolderBrowserSelectThis', tree.title);
                 list.appendChild(headerItem);
             }
             tree.children.forEach(folder => {
@@ -146,7 +146,7 @@ class Folder extends Input {
                     }
                     item.className = classes.join(' ');
                     item.dataset.id = folder.id;
-                    item.innerHTML = folder.title;
+                    item.textContent = folder.title;
                     list.appendChild(item);
                 }
             });
