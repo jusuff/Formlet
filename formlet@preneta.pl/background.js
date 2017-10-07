@@ -115,7 +115,7 @@ function menuCommand(info, tab) {
         } else {
             let command = info.menuItemId.split('-')[1];
             prefsCache[command] = info.checked;
-            browser.storage.sync.set({[command]: info.checked});
+            browser.storage.local.set({[command]: info.checked});
         }
 
     }
@@ -157,7 +157,7 @@ function setupDefaults(details) {
         bookmarksFolder: 'unfiled_____', // @todo - how to query default folder id and save it in defaults
     };
 
-    browser.storage.sync.get(defaults).then(result => browser.storage.sync.set(result));
+    browser.storage.local.get(defaults).then(result => browser.storage.local.set(result));
 }
 
 /**
@@ -180,7 +180,7 @@ function init(prefs) {
 /**
  * Get extension preferences from storage and init extension
  */
-browser.storage.sync.get().then(init);
+browser.storage.local.get().then(init);
 /**
  * Listen to installation event
  */

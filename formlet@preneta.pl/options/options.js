@@ -21,7 +21,7 @@ class Input {
      */
     setup() {
         this.element.addEventListener('change', () => {
-            browser.storage.sync.set({[this.id]: this.element.value});
+            browser.storage.local.set({[this.id]: this.element.value});
         });
     }
 
@@ -51,7 +51,7 @@ class Checkbox extends Input {
     /** @inheritdoc */
     setup() {
         this.element.addEventListener('click', () => {
-            browser.storage.sync.set({[this.id]: this.element.checked});
+            browser.storage.local.set({[this.id]: this.element.checked});
         });
     }
 
@@ -250,7 +250,7 @@ class Folder extends Input {
      * @param {string} id Bookmarks folder id
      */
     save(id) {
-        browser.storage.sync.set({[this.element.id]: id}).then(() => {
+        browser.storage.local.set({[this.element.id]: id}).then(() => {
             this.setValue(id);
         });
     }
@@ -331,5 +331,5 @@ function updatePrefsUI(changes, area) {
 /**
  *  Get extension preferences from storage and setup preferences page.
  */
-browser.storage.sync.get().then(setupPrefsUI);
+browser.storage.local.get().then(setupPrefsUI);
 
