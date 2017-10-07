@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
-    "name": "Formlet2",
+    "name": "Formlet",
     "description": "__MSG_extensionDescription__",
-    "version": "2.0a1",
+    "version": "2.0",
     "content_scripts": [
         {
             "matches": [
@@ -36,7 +36,7 @@
     },
     "applications": {
         "gecko": {
-            "id": "formlet2@preneta.pl"
+            "id": "formlet@preneta.pl"
         }
     },
     "default_locale": "en_US"
