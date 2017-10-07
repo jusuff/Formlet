@@ -21,7 +21,8 @@ function setupMenu(prefs) {
                 id: 'formlet-save',
                 parentId: 'formlet',
                 title: browser.i18n.getMessage('contextMenuSaveForm'),
-                contexts: ['all']
+                contexts: ['all'],
+                enabled: false
             });
             browser.contextMenus.create({
                 id: 'formlet-separator',
@@ -66,7 +67,8 @@ function setupMenu(prefs) {
             browser.contextMenus.create({
                 id: 'formlet',
                 title: browser.i18n.getMessage('contextMenuLabel'),
-                contexts: ['all']
+                contexts: ['all'],
+                enabled: false
             });
         }
     });
