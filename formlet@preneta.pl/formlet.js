@@ -16,6 +16,10 @@
  * @param {Object} data Form data
  */
 const formFiller = function(data) {
+    var triggerChange = function(element) {
+        element.dispatchEvent(new Event('change'));
+    };
+
     /**
      * Placeholder for internal methods
      * @type {Object}
@@ -39,6 +43,7 @@ const formFiller = function(data) {
          */
         setValue: function(element, value) {
             element.value = value;
+            triggerChange(element);
         },
         /**
          * Set value for checkbox and radio inputs
@@ -47,6 +52,7 @@ const formFiller = function(data) {
          */
         setChecked: function(element, value) {
             element.checked = !!value;
+            triggerChange(element);
         },
         /**
          * Set value for selects
@@ -58,6 +64,7 @@ const formFiller = function(data) {
             for (var i = 0; i < options.length; i++) {
                 options[i].selected = values.indexOf(options[i].value) >= 0;
             }
+            triggerChange(element);
         }
     };
     /* decode data */
